@@ -10,4 +10,4 @@ Tip:
 
 ### Usage
 
-Required dependency: **`HtmlAgilityPack`** package.
+Required dependency: **`HtmlAgilityPack`** NuGet package..
