@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using WebScraper_ConsoleApp.utils;
+using WebScraper_ConsoleApp.Utils;
 
 namespace WebScraper_ConsoleApp
 {
@@ -13,7 +13,9 @@ namespace WebScraper_ConsoleApp
         {
             try
             {
-                var adTitles = await HtmlDoc.ParseAsync(ResourceUri, Classname);
+                var htmlParser = HtmlDocParserFactory.GetHtmlDocParser(ResourceUri, Classname);
+
+                var adTitles = await htmlParser.ParseAsync();
 
                 if (adTitles.Count == 0)
                 {
@@ -21,9 +23,9 @@ namespace WebScraper_ConsoleApp
                 }
                 else
                 {
-                    foreach (var ad in adTitles)
+                    foreach (var adTitle in adTitles)
                     {
-                        Console.WriteLine(ad);
+                        Console.WriteLine(adTitle);
                     }
                 }
             }
