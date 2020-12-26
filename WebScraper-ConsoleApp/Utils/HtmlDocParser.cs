@@ -19,18 +19,16 @@ namespace WebScraper_ConsoleApp.Utils
             _httpResponse = new HttpResponse();
         }
 
-        public async Task<List<string>> ParseAsync()
+        public async Task<List<HtmlNode>> ParseHtmlNodesAsync()
         {
             var responseBody = await _httpResponse.ParseAsync(ResourceUri);
            
             _htmlDocument.LoadHtml(responseBody);
             
-            var links = _htmlDocument.DocumentNode.Descendants()
+            var htmlNodes = _htmlDocument.DocumentNode.Descendants()
                 .Where(node => node.HasClass(Classname)).ToList();
-            
-            var titles = links.Select(link =>link.FirstChild.FirstChild.InnerHtml).ToList();
-            
-            return titles;
+
+            return htmlNodes;
         }
     }
 }

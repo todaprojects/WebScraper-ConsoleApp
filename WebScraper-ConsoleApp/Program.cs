@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using WebScraper_ConsoleApp.Utils;
 
@@ -15,17 +16,19 @@ namespace WebScraper_ConsoleApp
             {
                 var htmlParser = HtmlDocParserFactory.GetHtmlDocParser(ResourceUri, Classname);
 
-                var adTitles = await htmlParser.ParseAsync();
+                var htmlNodes = await htmlParser.ParseHtmlNodesAsync();
+                
+                var titles = htmlNodes.Select(link =>link.FirstChild.FirstChild.InnerHtml).ToList();
 
-                if (adTitles.Count == 0)
+                if (titles.Count == 0)
                 {
                     Console.WriteLine("No results found. Please check if \"ResourceUri\" is correct.");
                 }
                 else
                 {
-                    foreach (var adTitle in adTitles)
+                    foreach (var title in titles)
                     {
-                        Console.WriteLine(adTitle);
+                        Console.WriteLine(title);
                     }
                 }
             }
