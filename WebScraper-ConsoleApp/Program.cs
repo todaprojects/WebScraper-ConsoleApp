@@ -14,7 +14,7 @@ namespace WebScraper_ConsoleApp
         {
             try
             {
-                var htmlParser = HtmlDocParserFactory.GetHtmlDocParser(ResourceUri, Classname);
+                var htmlParser = Factory.GetHtmlDocParser(ResourceUri, Classname);
 
                 var htmlNodes = await htmlParser.ParseHtmlNodesAsync();
                 

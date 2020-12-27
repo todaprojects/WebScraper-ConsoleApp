@@ -10,7 +10,7 @@ namespace WebScraper_ConsoleApp.Utils
 
         public HttpResponse()
         {
-            _httpClient = new HttpClient();
+            _httpClient = Factory.GetHttpClient();
         }
 
         public async Task<string> ParseAsync(string sourceUri)

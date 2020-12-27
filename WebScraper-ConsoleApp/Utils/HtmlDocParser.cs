@@ -15,8 +15,8 @@ namespace WebScraper_ConsoleApp.Utils
 
         public HtmlDocParser()
         {
-            _htmlDocument = new HtmlDocument();
-            _httpResponse = new HttpResponse();
+            _htmlDocument = Factory.GeHtmlDocument();
+            _httpResponse = Factory.GeHttpResponse();
         }
 
         public async Task<List<HtmlNode>> ParseHtmlNodesAsync()
